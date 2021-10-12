@@ -1,0 +1,14 @@
+COSURL: "https://shiqi-1307614720.cos.ap-nanjing.myqcloud.com"
+SECRETID:  
+SECRETKEY:
+HOSTPORT: "0.0.0.0:9991"
+
+CONSUL: "127.0.0.1:8500"
+
+
+MYSQLLOGIN: "root:hello@123@tcp(127.0.0.1:3306)"
+MYSQLDB: "ihome"
+
+
+REDIS: "127.0.0.1:6379"
+PASSWORD: ""

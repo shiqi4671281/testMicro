@@ -1,0 +1,17 @@
+syntax = "proto3";
+
+package go.micro.srv.captcha;
+
+option go_package = "proto/captcha";
+
+service Captcha {
+	rpc Call(Request) returns (Response) {}
+}
+
+
+message Request {
+}
+
+message Response {
+	bytes img = 1;
+}
