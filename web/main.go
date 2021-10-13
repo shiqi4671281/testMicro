@@ -63,11 +63,11 @@ func main(){
 		r1.POST("/users",controller.PostRet)
 		r1.GET("/areas",controller.GetArea)
 
-		LoginSession()
+		//LoginSession()
 		r1.GET("/user",controller.GetUserInfo)
 		r1.PUT("/user/name",controller.PutUserInfo)
 		r1.GET("/session",controller.GetSession)
-	    r1.DELETE("/session",controller.DeleteSession)
+	        r1.DELETE("/session",controller.DeleteSession)
 		r1.POST("user/avatar",controller.PostAvatar)
 	}
 

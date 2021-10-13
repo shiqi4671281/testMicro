@@ -29,7 +29,7 @@ type Captcha struct{}
 // Call is a single request handler called via client.Call or the generated client code
 func (e *Captcha) Call(ctx context.Context, req *cappackage.Request, rsp *cappackage.Response) error {
 	cap := captcha.New()
-	cap.SetFont("./conf/comic.ttf")
+	cap.SetFont("./img/comic.ttf")
 	img, str := cap.Create(4,captcha.NUM)
 	modelpackage.InputCapt(req.Uuid,str)
 	imgBuf,_:=json.Marshal(img)

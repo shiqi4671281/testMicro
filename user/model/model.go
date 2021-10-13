@@ -14,8 +14,8 @@ func InitRedis(){
 		Dial: func() (conn redis.Conn, e error) {
 			return redis.Dial("tcp",viper.GetString("REDIS"))
 		},
-		MaxIdle:         2,
-		MaxActive:       3,
+		MaxIdle:         10,
+		MaxActive:       20,
 		IdleTimeout:     60,
 		MaxConnLifetime: 60*5,
 	}
@@ -23,7 +23,6 @@ func InitRedis(){
 
 func CheckCapt(imgcode,uuid string )  bool{
 	conn:=RedisPool.Get()
-	defer  conn.Close()
 
 	code,err:=redis.String(conn.Do("get",uuid))
 	if err!=nil{
@@ -35,13 +34,11 @@ func CheckCapt(imgcode,uuid string )  bool{
 
 func InputSms(phone,smscode string) {
 	conn:=RedisPool.Get()
-	defer conn.Close()
 	_, _ = conn.Do("setex", phone+"_code", 60*3, smscode)
 }
 
 func CheckSms(mobile,smscode string) bool{
 	conn:=RedisPool.Get()
-	defer conn.Close()
 
 	code,err:=redis.String(conn.Do("get",mobile+"_code"))
 	if err!=nil{
