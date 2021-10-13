@@ -24,7 +24,10 @@ RUN go build -o web .
 ###################
 # 接下来创建一个小镜像
 ###################
-FROM scratch
+FROM alpine
+
+RUN  sed -i 's/dl-cdn.alpinelinux.org/mirrors.aliyun.com/g' /etc/apk/repositories \
+     &&  apk --no-cache add  ca-certificates curl
 
 COPY ./conf /conf
 COPY ./view /view

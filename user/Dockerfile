@@ -24,12 +24,15 @@ RUN go build -o user .
 ###################
 # 接下来创建一个小镜像
 ###################
-FROM scratch
+FROM alpine
 
 COPY ./conf /conf
 
 # 从builder镜像中把/dist/app 拷贝到当前目录
 COPY --from=builder /build/user /
+
+RUN  sed -i 's/dl-cdn.alpinelinux.org/mirrors.aliyun.com/g' /etc/apk/repositories \
+     &&  apk --no-cache add  ca-certificates curl 
 
 # 需要运行的命令
 ENTRYPOINT ["/user", "conf/config.yaml"]
